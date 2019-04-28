@@ -13,33 +13,35 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 
       
-        <title>Usuarios</title>
+        <title>Apuestas</title>
     </head>
     <body>
-        <h1>Usuarios</h1>
+        <h1>Apuestas</h1>
         <p>
             <a href="usuario.jsp" class="btn btn-success">Agregar</a>
         </p>
         <table class="table table-bordered">
             <thead>
                 <th>ID</th>
-                <th>Nombre</th>
-           
-                <th>Cedula</th>
-                 <th>Roll</th>
-                  <th>Editar</th>
-                  <th>Eliminar</th>
+                 <th>Usuario</th>
+                 <th>Macador partido admin</th>
+                  <th>Macador partido admin2</th>
+                  <th>Marcador Propuesto1</th>
+                   <th>Marcador Propuesto2</th>
             </thead>
            
                 <tbody>
-                    <c:forEach items="${apuesta}" var="dato">
+                    <c:forEach items="${apuestas}" var="dato">
                         <tr>
-                            <td><c:out value="${dato.idUsuarios}" /> </td>
-                            <td><c:out value="${dato.nombUsu}" /> </td>
-                            <td><c:out value="${dato.cedulUsu}" /> </td>
-                            <td><c:out value="${dato.idPerfiles.nombPerf}" /> </td>
-                  <td><a href='<%= request.getContextPath()+"/EditUsu?id="%>${dato.idUsuarios}'>Editar</a></td>
-                  <td><a href='<%= request.getContextPath()+"/DeleUsu?id="%>${dato.idUsuarios}'>Eliminar</a></td>
+                            <td><c:out value="${dato.idApuesta}" /> </td>
+                            <td><c:out value="${dato.idUsuarios.nombUsu}" /> </td>      
+                            <td><c:out value="${dato.idPartido.marcadorEquip1}" /> </td>
+                            <td><c:out value="${dato.idPartido.marcadorEquip2}" /> </td>
+                            <td><c:out value="${dato.marcador1}" /> </td>
+                            <td><c:out value="${dato.marcador2}" /> </td>
+      
+         
+
              
                     </c:forEach>
                 </tbody>

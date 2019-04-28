@@ -19,8 +19,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -35,7 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "usuarios")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Usuarios.findAll", query = "SELECT u,p FROM Usuarios u, Perfiles p WHERE u.idUsuarios =p.idPerfiles")
+    @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u")
     , @NamedQuery(name = "Usuarios.findByIdUsuarios", query = "SELECT u FROM Usuarios u WHERE u.idUsuarios = :idUsuarios")
     , @NamedQuery(name = "Usuarios.findByNombUsu", query = "SELECT u FROM Usuarios u WHERE u.nombUsu = :nombUsu")
     , @NamedQuery(name = "Usuarios.findByCedulUsu", query = "SELECT u FROM Usuarios u WHERE u.cedulUsu = :cedulUsu")})

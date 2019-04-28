@@ -20,6 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -32,7 +33,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Partido.findAll", query = "SELECT p FROM Partido p")
-    , @NamedQuery(name = "Partido.findByIdPartido", query = "SELECT p FROM Partido p WHERE p.idPartido = :idPartido")})
+    , @NamedQuery(name = "Partido.findByIdPartido", query = "SELECT p FROM Partido p WHERE p.idPartido = :idPartido")
+    , @NamedQuery(name = "Partido.findByMarcadorEquip1", query = "SELECT p FROM Partido p WHERE p.marcadorEquip1 = :marcadorEquip1")
+    , @NamedQuery(name = "Partido.findByMarcadorEquip2", query = "SELECT p FROM Partido p WHERE p.marcadorEquip2 = :marcadorEquip2")})
 public class Partido implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,19 +44,34 @@ public class Partido implements Serializable {
     @Basic(optional = false)
     @Column(name = "idPartido")
     private Integer idPartido;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPartido")
-    private Collection<Resultado> resultadoCollection;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "marcadorEquip1")
+    private int marcadorEquip1;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "marcadorEquip2")
+    private int marcadorEquip2;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPartido")
     private Collection<Apuesta> apuestaCollection;
     @JoinColumn(name = "idEquipo", referencedColumnName = "idEquipo")
     @ManyToOne(optional = false)
     private Equipo idEquipo;
+    @JoinColumn(name = "idEquipo2", referencedColumnName = "idEquipo2")
+    @ManyToOne(optional = false)
+    private Equipo2 idEquipo2;
 
     public Partido() {
     }
 
     public Partido(Integer idPartido) {
         this.idPartido = idPartido;
+    }
+
+    public Partido(Integer idPartido, int marcadorEquip1, int marcadorEquip2) {
+        this.idPartido = idPartido;
+        this.marcadorEquip1 = marcadorEquip1;
+        this.marcadorEquip2 = marcadorEquip2;
     }
 
     public Integer getIdPartido() {
@@ -64,13 +82,20 @@ public class Partido implements Serializable {
         this.idPartido = idPartido;
     }
 
-    @XmlTransient
-    public Collection<Resultado> getResultadoCollection() {
-        return resultadoCollection;
+    public int getMarcadorEquip1() {
+        return marcadorEquip1;
     }
 
-    public void setResultadoCollection(Collection<Resultado> resultadoCollection) {
-        this.resultadoCollection = resultadoCollection;
+    public void setMarcadorEquip1(int marcadorEquip1) {
+        this.marcadorEquip1 = marcadorEquip1;
+    }
+
+    public int getMarcadorEquip2() {
+        return marcadorEquip2;
+    }
+
+    public void setMarcadorEquip2(int marcadorEquip2) {
+        this.marcadorEquip2 = marcadorEquip2;
     }
 
     @XmlTransient
@@ -88,6 +113,14 @@ public class Partido implements Serializable {
 
     public void setIdEquipo(Equipo idEquipo) {
         this.idEquipo = idEquipo;
+    }
+
+    public Equipo2 getIdEquipo2() {
+        return idEquipo2;
+    }
+
+    public void setIdEquipo2(Equipo2 idEquipo2) {
+        this.idEquipo2 = idEquipo2;
     }
 
     @Override

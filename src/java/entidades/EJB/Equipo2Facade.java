@@ -5,7 +5,7 @@
  */
 package entidades.EJB;
 
-import entidades.Resultado;
+import entidades.Equipo2;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author ealonso
  */
 @Stateless
-public class ResultadoFacade extends AbstractFacade<Resultado> {
+public class Equipo2Facade extends AbstractFacade<Equipo2> {
 
     @PersistenceContext(unitName = "UnimonitoEJBPU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class ResultadoFacade extends AbstractFacade<Resultado> {
         return em;
     }
 
-    public ResultadoFacade() {
-        super(Resultado.class);
+    public Equipo2Facade() {
+        super(Equipo2.class);
     }
     
 }

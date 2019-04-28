@@ -3,11 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Andres/Doc-Andres/Documentos/UnimonitoEJB/src/java/Controlador/consulta.java</file>
             <file>file:/D:/Andres/Doc-Andres/Documentos/UnimonitoEJB/web/consulta.jsp</file>
-            <file>file:/D:/Andres/Doc-Andres/Documentos/UnimonitoEJB/src/java/Controlador/RegistroAlumnoServlet.java</file>
+            <file>file:/D:/Andres/Doc-Andres/Documentos/UnimonitoEJB/src/java/entidades/EJB/ApuestaFacade.java</file>
+            <file>file:/D:/Andres/Doc-Andres/Documentos/UnimonitoEJB/src/java/entidades/EJB/PartidoFacade.java</file>
+            <file>file:/D:/Andres/Doc-Andres/Documentos/UnimonitoEJB/src/java/entidades/EJB/PerfilesFacade.java</file>
+            <file>file:/D:/Andres/Doc-Andres/Documentos/UnimonitoEJB/src/java/entidades/EJB/TipoDeporteFacade.java</file>
+            <file>file:/D:/Andres/Doc-Andres/Documentos/UnimonitoEJB/src/java/Controlador/consulta.java</file>
+            <file>file:/D:/Andres/Doc-Andres/Documentos/UnimonitoEJB/src/java/entidades/EJB/EquipoFacade.java</file>
+            <file>file:/D:/Andres/Doc-Andres/Documentos/UnimonitoEJB/src/java/entidades/EJB/Equipo2Facade.java</file>
+            <file>file:/D:/Andres/Doc-Andres/Documentos/UnimonitoEJB/src/java/entidades/EJB/GanadoresFacade.java</file>
+            <file>file:/D:/Andres/Doc-Andres/Documentos/UnimonitoEJB/src/java/entidades/EJB/RifaFacade.java</file>
+            <file>file:/D:/Andres/Doc-Andres/Documentos/UnimonitoEJB/src/java/entidades/EJB/UsuariosFacade.java</file>
             <file>file:/D:/Andres/Doc-Andres/Documentos/UnimonitoEJB/web/usuario.jsp</file>
-            <file>file:/D:/Andres/Doc-Andres/Documentos/UnimonitoEJB/src/java/entidades/Perfiles.java</file>
+            <file>file:/D:/Andres/Doc-Andres/Documentos/UnimonitoEJB/src/java/entidades/EJB/AbstractFacade.java</file>
+            <file>file:/D:/Andres/Doc-Andres/Documentos/UnimonitoEJB/src/java/entidades/EJB/BoleteriaFacade.java</file>
         </group>
     </open-files>
 </project-private>

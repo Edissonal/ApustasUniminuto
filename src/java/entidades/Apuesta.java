@@ -20,6 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -32,7 +33,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Apuesta.findAll", query = "SELECT a FROM Apuesta a")
-    , @NamedQuery(name = "Apuesta.findByIdApuesta", query = "SELECT a FROM Apuesta a WHERE a.idApuesta = :idApuesta")})
+    , @NamedQuery(name = "Apuesta.findByIdApuesta", query = "SELECT a FROM Apuesta a WHERE a.idApuesta = :idApuesta")
+    , @NamedQuery(name = "Apuesta.findByMarcador1", query = "SELECT a FROM Apuesta a WHERE a.marcador1 = :marcador1")
+    , @NamedQuery(name = "Apuesta.findByMarcador2", query = "SELECT a FROM Apuesta a WHERE a.marcador2 = :marcador2")})
 public class Apuesta implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,15 +44,20 @@ public class Apuesta implements Serializable {
     @Basic(optional = false)
     @Column(name = "idApuesta")
     private Integer idApuesta;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "Marcador1")
+    private int marcador1;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "Marcador2")
+    private int marcador2;
     @JoinColumn(name = "idPartido", referencedColumnName = "idPartido")
     @ManyToOne(optional = false)
     private Partido idPartido;
     @JoinColumn(name = "idUsuarios", referencedColumnName = "idUsuarios")
     @ManyToOne(optional = false)
     private Usuarios idUsuarios;
-    @JoinColumn(name = "idResultado", referencedColumnName = "idResultado")
-    @ManyToOne(optional = false)
-    private Resultado idResultado;
     @JoinColumn(name = "idBoleteria", referencedColumnName = "idBoleteria")
     @ManyToOne(optional = false)
     private Boleteria idBoleteria;
@@ -63,12 +71,34 @@ public class Apuesta implements Serializable {
         this.idApuesta = idApuesta;
     }
 
+    public Apuesta(Integer idApuesta, int marcador1, int marcador2) {
+        this.idApuesta = idApuesta;
+        this.marcador1 = marcador1;
+        this.marcador2 = marcador2;
+    }
+
     public Integer getIdApuesta() {
         return idApuesta;
     }
 
     public void setIdApuesta(Integer idApuesta) {
         this.idApuesta = idApuesta;
+    }
+
+    public int getMarcador1() {
+        return marcador1;
+    }
+
+    public void setMarcador1(int marcador1) {
+        this.marcador1 = marcador1;
+    }
+
+    public int getMarcador2() {
+        return marcador2;
+    }
+
+    public void setMarcador2(int marcador2) {
+        this.marcador2 = marcador2;
     }
 
     public Partido getIdPartido() {
@@ -85,14 +115,6 @@ public class Apuesta implements Serializable {
 
     public void setIdUsuarios(Usuarios idUsuarios) {
         this.idUsuarios = idUsuarios;
-    }
-
-    public Resultado getIdResultado() {
-        return idResultado;
-    }
-
-    public void setIdResultado(Resultado idResultado) {
-        this.idResultado = idResultado;
     }
 
     public Boleteria getIdBoleteria() {

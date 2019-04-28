@@ -6,7 +6,9 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,10 +16,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -43,6 +47,10 @@ public class TipoDeporte implements Serializable {
     @Size(min = 1, max = 200)
     @Column(name = "NombDepor")
     private String nombDepor;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoDeporte")
+    private Collection<Equipo> equipoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoDeporte")
+    private Collection<Equipo2> equipo2Collection;
 
     public TipoDeporte() {
     }
@@ -70,6 +78,24 @@ public class TipoDeporte implements Serializable {
 
     public void setNombDepor(String nombDepor) {
         this.nombDepor = nombDepor;
+    }
+
+    @XmlTransient
+    public Collection<Equipo> getEquipoCollection() {
+        return equipoCollection;
+    }
+
+    public void setEquipoCollection(Collection<Equipo> equipoCollection) {
+        this.equipoCollection = equipoCollection;
+    }
+
+    @XmlTransient
+    public Collection<Equipo2> getEquipo2Collection() {
+        return equipo2Collection;
+    }
+
+    public void setEquipo2Collection(Collection<Equipo2> equipo2Collection) {
+        this.equipo2Collection = equipo2Collection;
     }
 
     @Override

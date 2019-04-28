@@ -27,17 +27,17 @@
             <div class="col col-md"></div>
             <div class="col-10 col-md-3">
                   
-                  <form action="<%= request.getContextPath()%>/InstUsu" method="post">
+                  <form action="<%= request.getContextPath()%>/InsApu" method="post">
                      <input type="hidden" name="id" value="${partidos.idPartido}"/>
                     <div class="form-group"><label>Equipo1</label></div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="nombre" value="${partidos.idEquipo.nombEquipo}" readonly>
+                        <input type="text" class="form-control"  value="${partidos.idEquipo.nombEquipo}" readonly>
                    
                     </div>
                     
                     <div class="form-group"><label>Equipo2</label></div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="cedula" value="${partidos.idEquipo2.nombEquipo2}" readonly>
+                        <input type="text" class="form-control" value="${partidos.idEquipo2.nombEquipo2}" readonly>
                     </div>
                     
                     
@@ -49,7 +49,7 @@
                         marcador Propuesto Equipo1
                        <input type="text" class="form-control" name="marcador1" >
                         marcador Propuesto Equipo2
-                       <input type="text" class="form-control" name="marcador1" >
+                       <input type="text" class="form-control" name="marcador2" >
                        
        </div>  
                         

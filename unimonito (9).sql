@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-04-2019 a las 20:30:26
+-- Tiempo de generación: 28-04-2019 a las 21:38:13
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.4
 
@@ -36,6 +36,15 @@ CREATE TABLE `apuesta` (
   `Marcador1` int(200) NOT NULL,
   `Marcador2` int(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `apuesta`
+--
+
+INSERT INTO `apuesta` (`idApuesta`, `idPartido`, `idUsuarios`, `idBoleteria`, `Marcador1`, `Marcador2`) VALUES
+(11, 1, 15, 13, 1, 1),
+(12, 1, 15, 12, 2, 2),
+(13, 1, 18, 8, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -239,9 +248,9 @@ INSERT INTO `usuarios` (`idUsuarios`, `NombUsu`, `CedulUsu`, `idPerfiles`) VALUE
 --
 ALTER TABLE `apuesta`
   ADD PRIMARY KEY (`idApuesta`),
-  ADD UNIQUE KEY `idPartido` (`idPartido`),
-  ADD UNIQUE KEY `idUsuarios` (`idUsuarios`),
-  ADD UNIQUE KEY `idBoleteria` (`idBoleteria`);
+  ADD KEY `idPartido` (`idPartido`) USING BTREE,
+  ADD KEY `idUsuarios` (`idUsuarios`) USING BTREE,
+  ADD KEY `idBoleteria` (`idBoleteria`) USING BTREE;
 
 --
 -- Indices de la tabla `boleteria`
@@ -315,7 +324,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `apuesta`
 --
 ALTER TABLE `apuesta`
-  MODIFY `idApuesta` int(200) NOT NULL AUTO_INCREMENT;
+  MODIFY `idApuesta` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `boleteria`

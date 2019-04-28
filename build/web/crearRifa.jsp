@@ -26,11 +26,14 @@
                     </div>
                     <input type="hidden" name="idUsuarios" value="16"/>
                     <input type="hidden" name="idBoleteria" value="8"/>
-             
+                    <select>
+                        <c:forEach items="${boleteria}" var="dato">
+                            <option value="${dato.idBoleteria}"/>${dato.idBoleteria}
+                        </option>
+                        </c:forEach>
+                    </select>
                     <input type="submit" class="btn btn-success" value="Enviar">
-                </form>
-                
-              
+                </form>    
             </div>
             <div class="col col-md"></div>
         </div>

@@ -45,7 +45,7 @@
              
                     </c:forEach>
                 </tbody>
-          
         </table>
+        <a href="ReporteApuestas" class="btn btn-danger">Generar Ganadores</a>
     </body>
 </html>

@@ -1,16 +1,15 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Controlador;
 
-import entidades.EJB.BoleteriaFacade;
-import entidades.EJB.PerfilesFacade;
-import entidades.EJB.RifaFacade;
-import entidades.EJB.UsuariosFacade;
-import entidades.Rifa;
-import entidades.Usuarios;
+import entidades.Apuesta;
+import entidades.EJB.ApuestaFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,17 +22,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ealonso
  */
-@WebServlet(name = "EditRifa", urlPatterns = {"/EditRifa"})
-public class EditRifa extends HttpServlet {
-    @EJB
-    private RifaFacade rifaFacade;
-    
-    @EJB
-    private BoleteriaFacade boleteriaFacade;
+@WebServlet(name = "ReporteApuestas", urlPatterns = {"/ReporteApuestas"})
+public class ReporteApuestas extends HttpServlet {
 
-        
     @EJB
-    private UsuariosFacade usuariosFacade;
+    private ApuestaFacade apuestaFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,44 +40,14 @@ public class EditRifa extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-  
-        String $id= request.getParameter("id");
-        String premio= request.getParameter("premio");
-        int idBoleteria= Integer.parseInt(request.getParameter("idBoleteria"));
-        int idUsuarios= Integer.parseInt(request.getParameter("idUsuarios"));
-         boolean esNuevo= ($id== null || $id.isEmpty());
+                List<Apuesta>  apuestas=apuestaFacade.findAll();
+          
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/ReporteApuestas.jsp");
+		request.setAttribute("apuestas", apuestas);
+		dispatcher.forward(request, response);
+        }
+    
 
-        Rifa rifa;
-
-        try {
-            if(esNuevo){
-                rifa = new Rifa();
-                rifa.setPremio(premio);
-                rifa.setIdBoleteria(boleteriaFacade.find(idBoleteria));
-                rifa.setIdUsuarios(usuariosFacade.find(idUsuarios));
-
-                rifaFacade.create(rifa);
-            
-            }else{
-                int id= Integer.parseInt($id);    
-                rifa = rifaFacade.find(id);
-                rifa.setPremio(premio);
-                rifa.setIdBoleteria(boleteriaFacade.find(idBoleteria));
-                rifa.setIdUsuarios(usuariosFacade.find(idUsuarios));
-
-                rifaFacade.edit(rifa);
-            }
-            
-
-           // RequestDispatcher rd =request.getRequestDispatcher("/alumno_reg_success.jsp");
-           RequestDispatcher rd =request.getRequestDispatcher("consulta");
-           //request.setAttribute("alumno", alumno);
-            rd.forward(request, response);
-        } catch (Exception e) {
-           System.out.print("Error");
-        }         
-            
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

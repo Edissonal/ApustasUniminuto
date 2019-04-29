@@ -14,7 +14,8 @@
       
         <title>Rifas</title>
     </head>
-    <body>
+    <body class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+        <a class="nav-link active" href="<%= request.getContextPath()%>/">Volver al Home</a>
         <h1>Rifas</h1>
         
         <c:if test="${empty ganador}"> 

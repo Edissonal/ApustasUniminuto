@@ -15,7 +15,8 @@
       
         <title>Consulta Equipo</title>
     </head>
-    <body>
+    <body class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+        <a class="nav-link active" href="<%= request.getContextPath()%>/">Volver al Home</a>
         <h1>Consulta Deporte</h1>
         <p>
             <a href="inserEquipo1" class="btn btn-success">Agregar</a>

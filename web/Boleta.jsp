@@ -13,8 +13,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
-
+    <body class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+        <a class="nav-link active" href="<%= request.getContextPath()%>/">Volver al Home</a>
         <div class="row">
             <div class="col col-md"></div>
             <div class="col-10 col-md-3">

@@ -43,10 +43,7 @@ public class EjecutaRifa extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-          String $id= request.getParameter("id");
-          int id= Integer.parseInt($id);
-
+       
           List<Apuesta> apuesta=apuestaFacade.findAll();
           
           

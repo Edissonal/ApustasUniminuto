@@ -15,7 +15,8 @@
       
         <title>Usuarios</title>
     </head>
-    <body>
+    <body class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+        <a class="nav-link active" href="<%= request.getContextPath()%>/">Volver al Home</a>
         <h1>Usuarios</h1>
         <p>
             <a href="usuario.jsp" class="btn btn-success">Agregar</a>

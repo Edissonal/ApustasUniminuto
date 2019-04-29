@@ -21,13 +21,14 @@
         
         
     </head>
-    <body>
+    <body class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+        <a class="nav-link active" href="<%= request.getContextPath()%>/">Volver al Home</a>
 
         <div class="row">
             <div class="col col-md"></div>
             <div class="col-10 col-md-3">
                   
-                  <form action="<%= request.getContextPath()%>/InserPartido" method="post">
+                  <form action="<%= request.getContextPath()%>/InsertPartido" method="post">
                      <input type="hidden" name="id" value="${partido.idPartido}"/>
 
 

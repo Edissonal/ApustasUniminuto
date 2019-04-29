@@ -8,11 +8,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-<<<<<<< Updated upstream
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-04-28T14:27:50")
-=======
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-04-28T14:38:09")
->>>>>>> Stashed changes
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-04-28T21:48:22")
 @StaticMetamodel(Partido.class)
 public class Partido_ { 
 

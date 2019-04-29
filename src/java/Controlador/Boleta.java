@@ -4,14 +4,12 @@
  * and open the template in the editor.
  */
 package Controlador;
-
 import entidades.Boleteria;
 import entidades.EJB.BoleteriaFacade;
-import entidades.EJB.RifaFacade;
 import entidades.EJB.UsuariosFacade;
-import entidades.Rifa;
 import entidades.Usuarios;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -25,17 +23,13 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ivan
  */
-
-
-
-
-@WebServlet(name = "rifa", urlPatterns = {"/rifa"})
-public class rifa extends HttpServlet {
+@WebServlet(name = "Boleta", urlPatterns = {"/Boleta"})
+public class Boleta extends HttpServlet {
+    @EJB
+    private BoleteriaFacade boleteriaFacade;
 
     @EJB
-    private RifaFacade rifaFacade;
-
- 
+    private UsuariosFacade usuariosFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,14 +42,16 @@ public class rifa extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-    
-          List<Rifa> rifas=rifaFacade.findAll();
-          request.setAttribute("rifas", rifas);
-          RequestDispatcher rd =request.getRequestDispatcher("rifa.jsp");
+            response.setContentType("text/html;charset=UTF-8");
+          List<Boleteria> boleteria=boleteriaFacade.findAll();
+          request.setAttribute("boleteria", boleteria);
           
-          rd.forward(request, response);
-   }
+           List<Usuarios> usuarios=usuariosFacade.findAll();
+          request.setAttribute("usuarios", usuarios);
+          RequestDispatcher rq =request.getRequestDispatcher("Boleta.jsp");
+          
+          rq.forward(request, response);     
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

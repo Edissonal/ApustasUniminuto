@@ -22,16 +22,30 @@
                      <input type="hidden" name="id" value="${rifa.idRifa}"/>
                     <div class="form-group"><label>Premio</label></div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="premio">
+                        <input type="text" class="form-control" name="premio" value="${rifa.premio}">
                     </div>
-                    <input type="hidden" name="idUsuarios" value="16"/>
-                    <input type="hidden" name="idBoleteria" value="8"/>
-                    <select>
+                    <br>
+                    <br>
+                    <div class="form-group"><label>Precio boletas</label></div>
+                    <select name="idBoleteria">
                         <c:forEach items="${boleteria}" var="dato">
-                            <option value="${dato.idBoleteria}"/>${dato.idBoleteria}
-                        </option>
+                            <option name="idBoleteria" value="${dato.idBoleteria}"/>
+                                $ ${dato.precio}
+                            </option>
                         </c:forEach>
                     </select>
+                    <br>
+                    <br>
+                    <div class="form-group"><label>Escoger usuario</label></div>
+                    <select name="idUsuarios">
+                        <c:forEach items="${usuarios}" var="dato">
+                            <option value="${dato.idUsuarios}"/>
+                                ${dato.nombUsu}
+                            </option>
+                        </c:forEach>
+                    </select>
+                    <br>
+                    <br>
                     <input type="submit" class="btn btn-success" value="Enviar">
                 </form>    
             </div>

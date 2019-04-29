@@ -44,7 +44,7 @@ public class consulta extends HttpServlet {
     
           List<Usuarios>  usuarios=usuariosFacade.findAll();
           request.setAttribute("usuarios", usuarios);
-          RequestDispatcher rd =request.getRequestDispatcher("consulta.jsp");
+          RequestDispatcher rd =request.getRequestDispatcher("/consulta.jsp");
           
           rd.forward(request, response);
         

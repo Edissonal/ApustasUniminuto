@@ -5,13 +5,10 @@
  */
 package Controlador;
 
-import entidades.Boleteria;
-import entidades.EJB.BoleteriaFacade;
-import entidades.EJB.RifaFacade;
-import entidades.EJB.UsuariosFacade;
-import entidades.Rifa;
-import entidades.Usuarios;
+import entidades.Apuesta;
+import entidades.EJB.ApuestaFacade;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -23,19 +20,13 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author ivan
+ * @author ealonso
  */
-
-
-
-
-@WebServlet(name = "rifa", urlPatterns = {"/rifa"})
-public class rifa extends HttpServlet {
+@WebServlet(name = "ReporteApuestas", urlPatterns = {"/ReporteApuestas"})
+public class ReporteApuestas extends HttpServlet {
 
     @EJB
-    private RifaFacade rifaFacade;
-
- 
+    private ApuestaFacade apuestaFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -49,13 +40,14 @@ public class rifa extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-    
-          List<Rifa> rifas=rifaFacade.findAll();
-          request.setAttribute("rifas", rifas);
-          RequestDispatcher rd =request.getRequestDispatcher("rifa.jsp");
+                List<Apuesta>  apuestas=apuestaFacade.findAll();
           
-          rd.forward(request, response);
-   }
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/ReporteApuestas.jsp");
+		request.setAttribute("apuestas", apuestas);
+		dispatcher.forward(request, response);
+        }
+    
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

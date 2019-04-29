@@ -1,16 +1,15 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Controlador;
 
-import entidades.EJB.BoleteriaFacade;
-import entidades.EJB.PerfilesFacade;
-import entidades.EJB.RifaFacade;
-import entidades.EJB.UsuariosFacade;
-import entidades.Rifa;
-import entidades.Usuarios;
+import entidades.EJB.Equipo2Facade;
+import entidades.EJB.TipoDeporteFacade;
+import entidades.Equipo2;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,19 +20,16 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author ealonso
+ * @author Dicita
  */
-@WebServlet(name = "EditRifa", urlPatterns = {"/EditRifa"})
-public class EditRifa extends HttpServlet {
-    @EJB
-    private RifaFacade rifaFacade;
-    
-    @EJB
-    private BoleteriaFacade boleteriaFacade;
+@WebServlet(name = "InserEqui2", urlPatterns = {"/InserEqui2"})
+public class InserEqui2 extends HttpServlet {
 
-        
     @EJB
-    private UsuariosFacade usuariosFacade;
+    private Equipo2Facade equipo2Facade;
+
+    @EJB
+    private TipoDeporteFacade tipoDeporteFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,43 +43,61 @@ public class EditRifa extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
+
             String $id= request.getParameter("id");
-            String premio= request.getParameter("premio");
-            int idBoleteria= Integer.parseInt(request.getParameter("idBoleteria"));
-            int idUsuarios= Integer.parseInt(request.getParameter("idUsuarios"));
-            boolean esNuevo= ($id== null || $id.isEmpty());
+            String nombreequipo1= request.getParameter("nombreequipo1");
+            int roll= Integer.parseInt(request.getParameter("roll"));
 
-            Rifa rifa;
-            System.out.print(esNuevo);
+            
+            
+              boolean esNuevo= ($id== null || $id.isEmpty());
+            
+            Equipo2 equipo;
+
+
+        try {
+            
+           
             if(esNuevo){
-                rifa = new Rifa();
-                rifa.setPremio(premio);
-                rifa.setIdBoleteria(boleteriaFacade.find(idBoleteria));
-                rifa.setIdUsuarios(usuariosFacade.find(idUsuarios));
-
-                rifaFacade.create(rifa);
+            
+            equipo = new Equipo2();
+            equipo.setNombEquipo2(nombreequipo1);
+            equipo.setIdTipoDeporte(tipoDeporteFacade.find(roll));
+            
+            
+            equipo2Facade.create(equipo);
+            
             
             }else{
-                int id= Integer.parseInt($id);    
-                rifa = rifaFacade.find(id);
-                rifa.setPremio(premio);
-                rifa.setIdBoleteria(boleteriaFacade.find(idBoleteria));
-                rifa.setIdUsuarios(usuariosFacade.find(idUsuarios));
-
-                rifaFacade.edit(rifa);
+   
+            int id= Integer.parseInt($id);    
+            equipo = equipo2Facade.find(id);
+            equipo.setNombEquipo2(nombreequipo1);
+            equipo.setIdTipoDeporte(tipoDeporteFacade.find(roll));
+                
+            equipo2Facade.edit(equipo);
             }
             
 
-           // RequestDispatcher rd =request.getRequestDispatcher("/alumno_reg_success.jsp");
-           RequestDispatcher rd =request.getRequestDispatcher("rifa");
-           //request.setAttribute("alumno", alumno);
-            rd.forward(request, response);
+           
+           RequestDispatcher rd =request.getRequestDispatcher("ConsulEquipo2");
+           rd.forward(request, response);
+           
         } catch (Exception e) {
-           System.out.print("*******************");
+           System.out.print("Error");
+        }  
+        
     }
-}
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

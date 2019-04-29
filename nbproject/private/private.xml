@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/C:/Users/ivan/Documents/ApustasUniminuto/web/Boleta.jsp</file>
             <file>file:/C:/Users/ivan/Documents/ApustasUniminuto/src/java/Controlador/Boleta.java</file>
@@ -9,5 +10,8 @@
             <file>file:/C:/Users/ivan/Documents/ApustasUniminuto/src/java/Controlador/EditRifa.java</file>
             <file>file:/C:/Users/ivan/Documents/ApustasUniminuto/web/rifa.jsp</file>
         </group>
+=======
+        <group/>
+>>>>>>> e262f9b2c49ecb2526f9ff5d2bb4d327c57faf74
     </open-files>
 </project-private>

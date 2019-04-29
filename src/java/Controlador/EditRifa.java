@@ -1,14 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controlador;
 
-import entidades.EJB.TipoDeporteFacade;
-import entidades.TipoDeporte;
+import entidades.EJB.BoleteriaFacade;
+import entidades.EJB.PerfilesFacade;
+import entidades.EJB.RifaFacade;
+import entidades.EJB.UsuariosFacade;
+import entidades.Rifa;
+import entidades.Usuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,13 +21,20 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Dicita
- */
-@WebServlet(name = "InserDeporte", urlPatterns = {"/InserDeporte"})
-public class InserDeporte extends HttpServlet {
+ * @author ealonso
+ *  */
+@WebServlet(name = "EditRifa", urlPatterns = {"/EditRifa"})
+public class EditRifa extends HttpServlet {
+    @EJB
+    private RifaFacade rifaFacade;
 
     @EJB
-    private TipoDeporteFacade tipoDeporteFacade;
+    private BoleteriaFacade boleteriaFacade;
+    
+
+    @EJB
+    private UsuariosFacade usuariosFacade;
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,46 +48,38 @@ public class InserDeporte extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+                try {
+            String $id= request.getParameter("id");
+            String premio= request.getParameter("premio");
+            int idBoleteria= Integer.parseInt(request.getParameter("idBoleteria"));
+            int idUsuarios= Integer.parseInt(request.getParameter("idUsuarios"));
+            boolean esNuevo= ($id== null || $id.isEmpty());
 
-
-                    String $id= request.getParameter("id");
-                    String nombredepor= request.getParameter("nombredepor");
-
-
-                boolean esNuevo= ($id== null || $id.isEmpty());
-                TipoDeporte deporte;
-        try {
-           
+            Rifa rifa;
+            System.out.print(esNuevo);
+            
             if(esNuevo){
-            
-            deporte = new TipoDeporte();
-            deporte.setNombDepor(nombredepor);
+                rifa = new Rifa();
+                rifa.setPremio(premio);
+                rifa.setIdBoleteria(boleteriaFacade.find(idBoleteria));
+                rifa.setIdUsuarios(usuariosFacade.find(idUsuarios));
+                rifaFacade.create(rifa);
 
-            
-            
-            tipoDeporteFacade.create(deporte);
-            
-            
             }else{
-   
-            int id= Integer.parseInt($id);    
-            deporte = tipoDeporteFacade.find(id);
-            deporte.setNombDepor(nombredepor);
-
-                tipoDeporteFacade.edit(deporte);
+                int id= Integer.parseInt($id);    
+                rifa = rifaFacade.find(id);
+                rifa.setPremio(premio);
+                rifa.setIdBoleteria(boleteriaFacade.find(idBoleteria));
+                rifa.setIdUsuarios(usuariosFacade.find(idUsuarios));
+                
+                rifaFacade.edit(rifa);
             }
-            
-
-           // RequestDispatcher rd =request.getRequestDispatcher("/alumno_reg_success.jsp");
-
-           RequestDispatcher rd =request.getRequestDispatcher("ConsulDeporte");
+             RequestDispatcher rd =request.getRequestDispatcher("rifa");
            //request.setAttribute("alumno", alumno);
             rd.forward(request, response);
         } catch (Exception e) {
-           System.out.print("Error");
-        }      
-        
-    
+           System.out.print("*******************");
+                   }
 }
 
     @Override
@@ -86,7 +87,6 @@ public class InserDeporte extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -100,7 +100,7 @@ public class InserDeporte extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
+ 
     /**
      * Returns a short description of the servlet.
      *
@@ -111,4 +111,4 @@ public class InserDeporte extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-}
+} 

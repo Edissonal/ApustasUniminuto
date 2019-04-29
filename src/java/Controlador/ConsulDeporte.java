@@ -47,7 +47,8 @@ public class ConsulDeporte extends HttpServlet {
           RequestDispatcher rd =request.getRequestDispatcher("/ConsulDeporte.jsp");
           
           rd.forward(request, response);
-    }
+   }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

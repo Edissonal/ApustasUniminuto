@@ -5,10 +5,11 @@
  */
 package Controlador;
 
-import entidades.EJB.TipoDeporteFacade;
-import entidades.TipoDeporte;
+import entidades.EJB.UsuariosFacade;
+import entidades.Usuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,14 +20,12 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Dicita
+ * @author ealonso
  */
-@WebServlet(name = "InserDeporte", urlPatterns = {"/InserDeporte"})
-public class InserDeporte extends HttpServlet {
-
-    @EJB
-    private TipoDeporteFacade tipoDeporteFacade;
-
+@WebServlet(name = "InsBoleta", urlPatterns = {"/InsBoleta"})
+public class InsBoleta extends HttpServlet {
+@EJB
+    private UsuariosFacade usuariosFacade;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,47 +39,23 @@ public class InserDeporte extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-
-                    String $id= request.getParameter("id");
-                    String nombredepor= request.getParameter("nombredepor");
-
-
-                boolean esNuevo= ($id== null || $id.isEmpty());
-                TipoDeporte deporte;
-        try {
+            List<Usuarios>  usuarios=usuariosFacade.findAll();
+          request.setAttribute("usuarios", usuarios);
            
-            if(esNuevo){
-            
-            deporte = new TipoDeporte();
-            deporte.setNombDepor(nombredepor);
-
-            
-            
-            tipoDeporteFacade.create(deporte);
-            
-            
-            }else{
-   
-            int id= Integer.parseInt($id);    
-            deporte = tipoDeporteFacade.find(id);
-            deporte.setNombDepor(nombredepor);
-
-                tipoDeporteFacade.edit(deporte);
-            }
-            
-
-           // RequestDispatcher rd =request.getRequestDispatcher("/alumno_reg_success.jsp");
-
-           RequestDispatcher rd =request.getRequestDispatcher("ConsulDeporte");
-           //request.setAttribute("alumno", alumno);
-            rd.forward(request, response);
-        } catch (Exception e) {
-           System.out.print("Error");
-        }      
+          RequestDispatcher rd =request.getRequestDispatcher("/InsBoleta.jsp");
+           rd.forward(request, response);
         
-    
-}
+    }
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

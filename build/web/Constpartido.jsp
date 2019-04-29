@@ -35,7 +35,7 @@
                             <td><c:out value="${dato.idPartido}" /> </td>
                             <td><c:out value="${dato.idEquipo.nombEquipo}" /> </td>
                             <td><c:out value="${dato.idEquipo2.nombEquipo2}" /> </td>
-                           <td><a href='<%= request.getContextPath()+"/DefineMarca?id="%>${dato.idPartido}'>Editar</a></td>
+                           <td><a href='<%= request.getContextPath()+"/DefineMarca?id="%>${dato.idPartido}'>Crear apuesta</a></td>
              
                     </c:forEach>
                 </tbody>

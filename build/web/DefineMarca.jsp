@@ -5,6 +5,7 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -58,8 +59,7 @@
                 <div class="form-group"><label>Usuario</label></div>   
                 <div class="form-group">
               <select name="usuario"  class="form-group">
-                  <c:forEach items="${usuarios}" var="dato">    
-                <option  class="form-group">Defina usuario</option>
+                  <c:forEach items="${usuarios}" var="dato">
                 <option  class="form-group" value="${dato.idUsuarios}">${dato.nombUsu}</option>
                 </c:forEach> 
                 </select>

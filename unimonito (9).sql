@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-04-2019 a las 03:59:50
+-- Tiempo de generación: 28-04-2019 a las 21:38:13
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.4
 
@@ -32,9 +32,19 @@ CREATE TABLE `apuesta` (
   `idApuesta` int(200) NOT NULL,
   `idPartido` int(200) NOT NULL,
   `idUsuarios` int(200) NOT NULL,
-  `idResultado` int(200) NOT NULL,
-  `idBoleteria` int(200) NOT NULL
+  `idBoleteria` int(200) NOT NULL,
+  `Marcador1` int(200) NOT NULL,
+  `Marcador2` int(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `apuesta`
+--
+
+INSERT INTO `apuesta` (`idApuesta`, `idPartido`, `idUsuarios`, `idBoleteria`, `Marcador1`, `Marcador2`) VALUES
+(11, 1, 15, 13, 1, 1),
+(12, 1, 15, 12, 2, 2),
+(13, 1, 18, 8, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -163,17 +173,6 @@ INSERT INTO `perfiles` (`idPerfiles`, `NombPerf`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `resultado`
---
-
-CREATE TABLE `resultado` (
-  `idResultado` int(200) NOT NULL,
-  `idPartido` int(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `rifa`
 --
 
@@ -249,10 +248,9 @@ INSERT INTO `usuarios` (`idUsuarios`, `NombUsu`, `CedulUsu`, `idPerfiles`) VALUE
 --
 ALTER TABLE `apuesta`
   ADD PRIMARY KEY (`idApuesta`),
-  ADD KEY `idPartido` (`idPartido`),
-  ADD KEY `idUsuarios` (`idUsuarios`),
-  ADD KEY `idResultado` (`idResultado`),
-  ADD KEY `idBoleteria` (`idBoleteria`);
+  ADD KEY `idPartido` (`idPartido`) USING BTREE,
+  ADD KEY `idUsuarios` (`idUsuarios`) USING BTREE,
+  ADD KEY `idBoleteria` (`idBoleteria`) USING BTREE;
 
 --
 -- Indices de la tabla `boleteria`
@@ -298,13 +296,6 @@ ALTER TABLE `perfiles`
   ADD PRIMARY KEY (`idPerfiles`);
 
 --
--- Indices de la tabla `resultado`
---
-ALTER TABLE `resultado`
-  ADD PRIMARY KEY (`idResultado`),
-  ADD KEY `idPartido` (`idPartido`);
-
---
 -- Indices de la tabla `rifa`
 --
 ALTER TABLE `rifa`
@@ -333,7 +324,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `apuesta`
 --
 ALTER TABLE `apuesta`
-  MODIFY `idApuesta` int(200) NOT NULL AUTO_INCREMENT;
+  MODIFY `idApuesta` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `boleteria`
@@ -372,12 +363,6 @@ ALTER TABLE `perfiles`
   MODIFY `idPerfiles` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `resultado`
---
-ALTER TABLE `resultado`
-  MODIFY `idResultado` int(200) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `rifa`
 --
 ALTER TABLE `rifa`
@@ -405,8 +390,7 @@ ALTER TABLE `usuarios`
 ALTER TABLE `apuesta`
   ADD CONSTRAINT `apuesta_ibfk_1` FOREIGN KEY (`idPartido`) REFERENCES `partido` (`idPartido`),
   ADD CONSTRAINT `apuesta_ibfk_2` FOREIGN KEY (`idUsuarios`) REFERENCES `usuarios` (`idUsuarios`),
-  ADD CONSTRAINT `apuesta_ibfk_3` FOREIGN KEY (`idResultado`) REFERENCES `resultado` (`idResultado`),
-  ADD CONSTRAINT `apuesta_ibfk_4` FOREIGN KEY (`idBoleteria`) REFERENCES `boleteria` (`idBoleteria`);
+  ADD CONSTRAINT `apuesta_ibfk_3` FOREIGN KEY (`idBoleteria`) REFERENCES `boleteria` (`idBoleteria`);
 
 --
 -- Filtros para la tabla `boleteria`
@@ -439,12 +423,6 @@ ALTER TABLE `ganadores`
 ALTER TABLE `partido`
   ADD CONSTRAINT `partido_ibfk_1` FOREIGN KEY (`idEquipo`) REFERENCES `equipo` (`idEquipo`),
   ADD CONSTRAINT `partido_ibfk_2` FOREIGN KEY (`idEquipo2`) REFERENCES `equipo2` (`idEquipo2`);
-
---
--- Filtros para la tabla `resultado`
---
-ALTER TABLE `resultado`
-  ADD CONSTRAINT `resultado_ibfk_1` FOREIGN KEY (`idPartido`) REFERENCES `partido` (`idPartido`);
 
 --
 -- Filtros para la tabla `rifa`

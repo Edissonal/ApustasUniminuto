@@ -5,9 +5,8 @@
  */
 package Controlador;
 
-
-import entidades.Apuesta;
-import entidades.EJB.ApuestaFacade;
+import entidades.EJB.TipoDeporteFacade;
+import entidades.TipoDeporte;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -21,13 +20,13 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author ealonso
+ * @author Dicita
  */
-@WebServlet(name = "contsapuesta", urlPatterns = {"/contsapuesta"})
-public class contsapuesta extends HttpServlet {
+@WebServlet(name = "inserEquipo2", urlPatterns = {"/inserEquipo2"})
+public class inserEquipo2 extends HttpServlet {
 
     @EJB
-    private ApuestaFacade apuestaFacade;
+    private TipoDeporteFacade tipoDeporteFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,13 +40,14 @@ public class contsapuesta extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-   
-        
-          List<Apuesta>  apuesta=apuestaFacade.findAll();
-          request.setAttribute("apuesta", apuesta);
-          RequestDispatcher rd =request.getRequestDispatcher("contsapuesta.jsp");
+
+                List<TipoDeporte>  tipo=tipoDeporteFacade.findAll();
+
           
-          rd.forward(request, response);
+           request.setAttribute("tipo", tipo);
+           RequestDispatcher rd =request.getRequestDispatcher("/inserEquipo2.jsp");
+           rd.forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

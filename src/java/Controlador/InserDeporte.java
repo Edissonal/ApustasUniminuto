@@ -39,17 +39,7 @@ public class InserDeporte extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-<<<<<<< HEAD:src/java/Controlador/EditRifa.java
-        try {
-            String $id= request.getParameter("id");
-            String premio= request.getParameter("premio");
-            int idBoleteria= Integer.parseInt(request.getParameter("idBoleteria"));
-            int idUsuarios= Integer.parseInt(request.getParameter("idUsuarios"));
-            boolean esNuevo= ($id== null || $id.isEmpty());
 
-            Rifa rifa;
-            System.out.print(esNuevo);
-=======
 
                     String $id= request.getParameter("id");
                     String nombredepor= request.getParameter("nombredepor");
@@ -62,7 +52,6 @@ public class InserDeporte extends HttpServlet {
 
         try {
            
->>>>>>> e262f9b2c49ecb2526f9ff5d2bb4d327c57faf74:src/java/Controlador/InserDeporte.java
             if(esNuevo){
             
             deporte = new TipoDeporte();
@@ -84,13 +73,7 @@ public class InserDeporte extends HttpServlet {
             
 
            // RequestDispatcher rd =request.getRequestDispatcher("/alumno_reg_success.jsp");
-<<<<<<< HEAD:src/java/Controlador/EditRifa.java
-           RequestDispatcher rd =request.getRequestDispatcher("rifa");
-           //request.setAttribute("alumno", alumno);
-            rd.forward(request, response);
-        } catch (Exception e) {
-           System.out.print("*******************");
-=======
+
            RequestDispatcher rd =request.getRequestDispatcher("ConsulDeporte");
            //request.setAttribute("alumno", alumno);
             rd.forward(request, response);
@@ -98,8 +81,7 @@ public class InserDeporte extends HttpServlet {
            System.out.print("Error");
         }      
         
->>>>>>> e262f9b2c49ecb2526f9ff5d2bb4d327c57faf74:src/java/Controlador/InserDeporte.java
-    }
+    
 }
 
     @Override

@@ -27,13 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ConsulDeporte extends HttpServlet {
 
     @EJB
-<<<<<<< HEAD:src/java/Controlador/rifa.java
-    private RifaFacade rifaFacade;
-
- 
-=======
     private TipoDeporteFacade tipoDeporteFacade;
->>>>>>> e262f9b2c49ecb2526f9ff5d2bb4d327c57faf74:src/java/Controlador/ConsulDeporte.java
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -53,11 +47,8 @@ public class ConsulDeporte extends HttpServlet {
           RequestDispatcher rd =request.getRequestDispatcher("/ConsulDeporte.jsp");
           
           rd.forward(request, response);
-<<<<<<< HEAD:src/java/Controlador/rifa.java
    }
-=======
-    }
->>>>>>> e262f9b2c49ecb2526f9ff5d2bb4d327c57faf74:src/java/Controlador/ConsulDeporte.java
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

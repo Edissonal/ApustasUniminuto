@@ -5,10 +5,17 @@
  */
 package Controlador;
 
-import entidades.EJB.TipoDeporteFacade;
-import entidades.TipoDeporte;
+import entidades.Boleteria;
+import entidades.EJB.BoleteriaFacade;
+import entidades.EJB.RifaFacade;
+import entidades.EJB.UsuariosFacade;
+import entidades.Rifa;
+import entidades.Usuarios;
+import entidades.EJB.EquipoFacade;
+import entidades.Equipo;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,15 +24,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Dicita
- */
-@WebServlet(name = "InserDeporte", urlPatterns = {"/InserDeporte"})
-public class InserDeporte extends HttpServlet {
+@WebServlet(name = "rifa", urlPatterns = {"/rifa"})
+public class rifa extends HttpServlet {
+    
 
     @EJB
-    private TipoDeporteFacade tipoDeporteFacade;
+    private RifaFacade rifaFacade;
+
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,54 +44,28 @@ public class InserDeporte extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-
-                    String $id= request.getParameter("id");
-                    String nombredepor= request.getParameter("nombredepor");
-
-
-                boolean esNuevo= ($id== null || $id.isEmpty());
-                TipoDeporte deporte;
-        try {
-           
-            if(esNuevo){
-            
-            deporte = new TipoDeporte();
-            deporte.setNombDepor(nombredepor);
-
-            
-            
-            tipoDeporteFacade.create(deporte);
-            
-            
-            }else{
-   
-            int id= Integer.parseInt($id);    
-            deporte = tipoDeporteFacade.find(id);
-            deporte.setNombDepor(nombredepor);
-
-                tipoDeporteFacade.edit(deporte);
-            }
-            
-
-           // RequestDispatcher rd =request.getRequestDispatcher("/alumno_reg_success.jsp");
-
-           RequestDispatcher rd =request.getRequestDispatcher("ConsulDeporte");
-           //request.setAttribute("alumno", alumno);
-            rd.forward(request, response);
-        } catch (Exception e) {
-           System.out.print("Error");
-        }      
-        
     
-}
-
+          List<Rifa> rifas=rifaFacade.findAll();
+          request.setAttribute("rifas", rifas);
+          RequestDispatcher rd =request.getRequestDispatcher("rifa.jsp");
+          
+          rd.forward(request, response);
+   }
+    
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -100,7 +79,6 @@ public class InserDeporte extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
     /**
      * Returns a short description of the servlet.
      *
@@ -110,5 +88,4 @@ public class InserDeporte extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
